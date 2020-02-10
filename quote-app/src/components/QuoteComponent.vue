@@ -15,11 +15,11 @@
 </script>
 
 <style scoped>
-    .card{
+    /*.card{
         width: 18rem;
         margin-bottom: 1rem;
         margin-top: 1rem;
-    }
+    }*/
     .card-body {
         font-family: 'Arizonia', cursive;
         font-size: 24px;
