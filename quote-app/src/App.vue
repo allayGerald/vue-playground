@@ -1,7 +1,7 @@
 <template>
     <div id="app" class="container">
         <app-new-quote @quoteAdded="onAddQuote" class="my-2"></app-new-quote>
-        <app-quote-grid :quotes="quotes"></app-quote-grid>
+        <app-quote-grid :quotes="quotes" @quoteDeleted="onDelete"></app-quote-grid>
         
         <div class="row my-3">
             <div class="alert alert-info col-12">
@@ -24,15 +24,16 @@
         },
         data: function () {
             return {
-                quotes: [
-                    'One quote', 'quote two'
-                ],
+                quotes: [],
                 maxQuotes: 10
             }
         },
         methods: {
             onAddQuote(quote) {
                 this.quotes.push(quote);
+            },
+            onDelete(index) {
+                this.quotes.splice(index, 1);
             }
         }
     }
