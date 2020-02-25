@@ -17,6 +17,9 @@ export default {
   name: 'App',
   components: {
     appHeader: HeaderComponent
+  },
+  created() {
+    this.$store.dispatch('setStocks')
   }
 
 }
