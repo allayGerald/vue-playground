@@ -14,20 +14,20 @@
                                  class="nav-item" tag="li"><a class="nav-link">Home</a>
                     </router-link>
 
-                        <router-link class="nav-item"
-                                     to="/portfolio"
-                                     active-class="active" tag="li">
-                            <a class="nav-link">Portfolio</a>
-                        </router-link>
-                        <router-link class="nav-item"
-                                     to="/stocks"
-                                     active-class="active" tag="li">
-                            <a class="nav-link">Stocks</a>
-                        </router-link>
+                    <router-link class="nav-item"
+                                 to="/portfolio"
+                                 active-class="active" tag="li">
+                        <a class="nav-link">Portfolio</a>
+                    </router-link>
+                    <router-link class="nav-item"
+                                 to="/stocks"
+                                 active-class="active" tag="li">
+                        <a class="nav-link">Stocks</a>
+                    </router-link>
 
                 </ul>
                 <ul class="navbar-nav mr-sm-0 mr-md-2">
-                    <li class="nav-item"><a class="nav-link" href="#">End Day</a></li>
+                    <li class="nav-item" @click="onEndDay"><a class="nav-link" href="#">End Day</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,11 +48,21 @@
 </template>
 
 <script>
+    import {mapActions} from 'vuex'
+
     export default {
         name: "HeaderComponent",
         computed: {
             funds() {
                 return this.$store.getters.funds;
+            }
+        },
+        methods: {
+            ...mapActions([
+                'randomizeStocks'
+            ]),
+            onEndDay() {
+                this.randomizeStocks();
             }
         }
     }
