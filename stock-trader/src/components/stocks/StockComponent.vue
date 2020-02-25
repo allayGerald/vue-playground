@@ -10,7 +10,9 @@
                         <input type="number" class="form-control" placeholder="Quantity" v-model.number="quantity">
                     </div>
                     <div class="float-right mt-sm-2 mt-lg-0">
-                        <button class="btn btn-success" @click="onBuyStock" :disabled="!Number.isInteger(quantity) || quantity <= 0">Buy</button>
+                        <button class="btn btn-success" @click="onBuyStock"
+                                :disabled="!Number.isInteger(quantity) || quantity <= 0">Buy
+                        </button>
                     </div>
                 </div>
             </div>
@@ -29,14 +31,15 @@
         },
         methods: {
             onBuyStock() {
-               const order = {
-                   stockId: this.stock.id,
-                   stockPrice: this.stock.price,
-                   quantity: this.quantity
-               };
+                const order = {
+                    stockId: this.stock.id,
+                    stockPrice: this.stock.price,
+                    quantity: this.quantity
+                };
 
-               console.log(order);
-               this.quantity = 0;
+                this.$store.dispatch('buyStock', order);
+
+                this.quantity = 0;
             }
         }
     }
