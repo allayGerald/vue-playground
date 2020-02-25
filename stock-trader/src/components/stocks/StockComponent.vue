@@ -11,7 +11,7 @@
                     </div>
                     <div class="float-right mt-sm-2 mt-lg-0">
                         <button class="btn btn-success" @click="onBuyStock"
-                                :disabled="!Number.isInteger(quantity) || quantity <= 0">Buy
+                                :disabled="!Number.isInteger(quantity) || quantity <= 0 || isInsufficientFunds">Buy
                         </button>
                     </div>
                 </div>
@@ -24,6 +24,14 @@
     export default {
         name: "StockComponent",
         props: ['stock'],
+        computed: {
+            funds() {
+                return this.$store.getters.funds;
+            },
+            isInsufficientFunds() {
+                return this.quantity * this.stock.price > this.funds;
+            }
+        },
         data() {
             return {
                 'quantity': 0

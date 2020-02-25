@@ -26,7 +26,7 @@
                         </router-link>
 
                 </ul>
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-sm-0 mr-md-2">
                     <li class="nav-item"><a class="nav-link" href="#">End Day</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -41,6 +41,7 @@
                         </div>
                     </li>
                 </ul>
+                <strong class="navbar-text navbar-right">| Funds: {{funds | currency}}</strong>
             </div>
         </nav>
     </div>
@@ -48,7 +49,12 @@
 
 <script>
     export default {
-        name: "HeaderComponent"
+        name: "HeaderComponent",
+        computed: {
+            funds() {
+                return this.$store.getters.funds;
+            }
+        }
     }
 </script>
 

@@ -11,7 +11,8 @@
                     </div>
                     <div class="float-right mt-sm-2 mt-lg-0">
                         <button class="btn btn-success" @click="onSellStock"
-                                :disabled="!Number.isInteger(quantity) || quantity <= 0">Sell
+                                :disabled="!Number.isInteger(quantity) || quantity <= 0 || quantity > stock.quantity">
+                            Sell
                         </button>
                     </div>
                 </div>

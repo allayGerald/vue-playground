@@ -7,7 +7,7 @@ const mutations = {
     'BUY_STOCK'(state, {stockId, stockPrice, quantity}) {
         const totalCost = stockPrice * quantity;
 
-        if (state.funds > totalCost) {
+        if (state.funds >= totalCost) {
             const record = state.stocks.find(el => el.stockId === stockId);
 
             if (record) {
@@ -24,16 +24,23 @@ const mutations = {
         }
     },
     'SELL_STOCK'(state, {stockId, stockPrice, quantity}) {
+
         const record = state.stocks.find(el => el.stockId === stockId);
 
-        if (record) {
+        if (record ) {
             if (record.quantity > quantity) {
                 record.quantity -= quantity;
-            } else {
+                state.funds += stockPrice * quantity;
+            } else if (record.quantity === quantity){
                 state.stocks.splice(state.stocks.indexOf(record), 1);
+                state.funds += stockPrice * quantity;
+            } else {
+                alert('Cant sell more than you have! ')
             }
 
-            state.funds += stockPrice * quantity;
+
+        } else {
+            alert('No stocks');
         }
 
     }
